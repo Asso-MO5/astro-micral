@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import getAllPostsWithSlugs from "../../lib/getAllPostsWithSlugs"
+import getPageBySlug from "../../lib/getPageBySlug"
+import getPostBySlug from "../../lib/getPostBySlug"
+
+export async function getStaticPaths() {
+  const pagesWithSlugs = await getAllPostsWithSlugs()
+  return pagesWithSlugs.edges.map(({ node }) => {
+    return {
+      params: { slug: node.slug },
+    }
+  })
+}
+
+const { slug } = Astro.params
+const page = await getPostBySlug(slug)
+---
+
+<Layout title={page.title}>
+  <main>
+    <article>
+      <Fragment set:html={page.content} />
+    </article>
+  </main>
+</Layout>
+
+<meta charset="UTF-8" />
+<title>{page.title}</title>
+<meta name="viewport" content="width=device-width" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href={Astro.resolve("../styles/global.css")}
+/>
+
+<div class="flex flex-col p-10">
+  <div class="mb-5 text-4xl font-bold">{page.title}</div>
+</div>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+  }
+  article {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  article > h1 {
+    font-size: 0.5rem;
+  }
+</style>

@@ -8,6 +8,9 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "astro": "^1.0.0-rc.8"
+    "@astrojs/prefetch": "^0.0.7",
+    "@types/node": "^18.7.23",
+    "astro": "^1.0.0-rc.8",
+    "dotenv": "^16.0.2"
   }
 }
