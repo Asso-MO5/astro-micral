@@ -2,11 +2,15 @@
 import getPrimaryMenu from "../lib/getPrimaryMenu"
 
 const { menuItems } = await getPrimaryMenu()
+const items = menuItems.edges.map(item=>{
+  item.node.uri = item.node.uri.replace('category','categorie')
+  return item
+})
 ---
 
 <nav>
   {
-    menuItems.edges.map((item) => (
+    items.map((item) => (
       <li>
         <a href={item.node.uri} rel="prefetch">
           {item.node.label}
