@@ -4,12 +4,16 @@ import Card from "../components/Card.astro"
 import Highlight from "../components/Highlight.astro"
 import getLastPosts from "../lib/getLastPosts"
 
-const posts = await getLastPosts()
+const 
+  allPosts = await getLastPosts(), 
+  stickyPosts = allPosts.filter((post) => post.node.isSticky),
+  stickyPost = stickyPosts.at(0),
+  posts = allPosts.filter((post) => post.node.id !== stickyPost.node.id)
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
-    <Highlight />
+    <Highlight post={stickyPost} />
 
     <ul role="list" class="link-card-grid">
       {
@@ -27,17 +31,15 @@ const posts = await getLastPosts()
 </Layout>
 
 <style>
-
   h1 {
     margin: 2rem 0;
   }
 
   main {
     margin: auto;
-    padding: 1em;
+    padding: 20px;
     max-width: 60ch;
   }
-
 
   .link-card-grid {
     display: grid;

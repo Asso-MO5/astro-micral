@@ -1,0 +1,63 @@
+---
+import Card from "../../components/Card.astro"
+import Layout from "../../layouts/Layout.astro"
+import getAllCategoriesWithSlugs from "../../lib/getAllCategoriesWithSlugs"
+import getAllPostsByCategory from "../../lib/getAllPostsByCategory"
+import getCategoryBySlug from "../../lib/getCategoryBySlug"
+
+export async function getStaticPaths() {
+  const categoriesWithSlugs = await getAllCategoriesWithSlugs()
+  return categoriesWithSlugs.edges.map(({ node }) => {
+    return {
+      params: { slug: node.slug },
+    }
+  })
+}
+
+const { slug } = Astro.params,
+  categorie = await getCategoryBySlug(slug),
+  posts = await getAllPostsByCategory(categorie.id)
+---
+
+<Layout title={categorie.name}>
+  <main>
+    <h2>{categorie.name}</h2>
+    <ul role="list" class="link-card-grid">
+      {
+        posts.map((post) => (
+          <Card
+            href={`/article/${post.node.slug}`}
+            noCat={true}
+            title={post.node.title}
+            body={post.node.excerpt}
+            categories={post.node.categories.nodes}
+          />
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  h2 {
+    margin: 2rem 0;
+    text-align: center;
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 10px;
+    text-transform: uppercase;
+  }
+
+  main {
+    margin: auto;
+    padding: 20px;
+    max-width: 60ch;
+  }
+
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+</style>

@@ -1,9 +1,19 @@
+---
+import { WP_post } from '../../types/post.type';
+
+type Props = {
+  post:WP_post
+}
+
+const { post } = Astro.props as Props
+
+---
 <article>
-  <h2>TITRE de l'article</h2>
-  <div class="desc">ici le texte</div>
-  <div class="button">
+  <h2>{post.node.title}</h2>
+  <div class="desc"><Fragment set:html={post.node.excerpt} /></div>
+  <a class="button" href={`/article/${post.node.slug}`} rel="prefetch">
     <button>Lire la suite</button>
-  </div>
+  </a>
 </article>
 
 <style>
@@ -13,10 +23,16 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 100%;
   }
+
 
   .button {
     display: flex;
     justify-content: end;
+    text-decoration: none;
+    cursor: pointer;
   }
+
+
 </style>

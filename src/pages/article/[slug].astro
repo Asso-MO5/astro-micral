@@ -1,7 +1,7 @@
 ---
+import CategorieChip from "../../components/CategorieChip.astro"
 import Layout from "../../layouts/Layout.astro"
 import getAllPostsWithSlugs from "../../lib/getAllPostsWithSlugs"
-import getPageBySlug from "../../lib/getPageBySlug"
 import getPostBySlug from "../../lib/getPostBySlug"
 
 export async function getStaticPaths() {
@@ -14,29 +14,21 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params
-const page = await getPostBySlug(slug)
+const post = await getPostBySlug(slug)
+
 ---
 
-<Layout title={page.title}>
+<Layout title={post.title}>
   <main>
+
     <article>
-      <Fragment set:html={page.content} />
+      <div class="categories">
+        {post?.categories?.nodes.map((cat) => <CategorieChip {...cat} />)}
+      </div>
+      <Fragment set:html={post.content} />
     </article>
   </main>
 </Layout>
-
-<meta charset="UTF-8" />
-<title>{page.title}</title>
-<meta name="viewport" content="width=device-width" />
-<link
-  rel="stylesheet"
-  type="text/css"
-  href={Astro.resolve("../styles/global.css")}
-/>
-
-<div class="flex flex-col p-10">
-  <div class="mb-5 text-4xl font-bold">{page.title}</div>
-</div>
 
 <style>
   main {
@@ -45,6 +37,15 @@ const page = await getPostBySlug(slug)
     justify-items: center;
     align-items: center;
     align-content: center;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .categories {
+    align-self: flex-start;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   article {
     max-width: 600px;
@@ -52,10 +53,5 @@ const page = await getPostBySlug(slug)
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 10px;
-  }
-
-  article > h1 {
-    font-size: 0.5rem;
   }
 </style>

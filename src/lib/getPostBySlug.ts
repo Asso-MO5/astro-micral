@@ -6,6 +6,12 @@ export default async function getPostBySlug(slug: string |number) {
         postBy(slug: "${slug}") {
         title(format: RAW)
         content(format: RENDERED)
+        categories {
+          nodes {
+            name
+            slug
+          }
+        }
       }
     }
     `)

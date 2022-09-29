@@ -1,0 +1,26 @@
+---
+type Props = {
+  name: string
+  slug: string
+}
+
+const { name, slug } = Astro.props as Props
+---
+
+<a class="category" href={`/categorie/${slug}`} rel="prefetch">
+  {name}
+</a>
+
+<style>
+  .category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--color-text);
+    color: var(--color-bg);
+    font-size: .7em;
+  }
+</style>

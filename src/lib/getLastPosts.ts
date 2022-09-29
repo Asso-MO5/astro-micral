@@ -11,12 +11,14 @@ export default async function getLastPosts() {
             }
           }
           isSticky
+          id
           slug
           title
           excerpt
           categories {
             nodes {
               name
+              slug
             }
           }
         }
