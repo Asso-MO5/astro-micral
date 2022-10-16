@@ -1,5 +1,6 @@
 ---
 import { WP_post } from '../../types/post.type';
+import Cover from './Cover.astro';
 
 type Props = {
   post:WP_post
@@ -9,7 +10,12 @@ const { post } = Astro.props as Props
 
 ---
 <article>
+  <div class="cover">
+    <Cover featuredImage={post.node.featuredImage} />
+  </div>
+
   <h2>{post.node.title}</h2>
+  
   <div class="desc"><Fragment set:html={post.node.excerpt} /></div>
   <a class="button" href={`/article/${post.node.slug}`} rel="prefetch">
     <button>Lire la suite</button>
@@ -18,12 +24,38 @@ const { post } = Astro.props as Props
 
 <style>
   article {
-    border: var(--border);
-    padding: 10px;
+    border: 2px solid var(--color-micral);
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding: 10px;
     width: calc(100% - 25px);
+    position: relative;
+  }
+
+  article:before,
+  article:after {
+    content:'';
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    --hl-border: 2px solid var(--color-micral);
+    --hl-border-position: -5px;
+    z-index: -1;
+  }
+
+  article:before {
+    top: var(--hl-border-position);
+    left: var(--hl-border-position);
+    border-top: var( --hl-border);
+    border-left: var( --hl-border);
+  }
+
+  article:after {
+    bottom: var(--hl-border-position);
+    right: var(--hl-border-position);
+    border-right: var( --hl-border);
+    border-bottom: var( --hl-border);
   }
 
 
@@ -34,5 +66,8 @@ const { post } = Astro.props as Props
     cursor: pointer;
   }
 
+  .cover {
+    margin: -10px -10px 0
+  }
 
 </style>

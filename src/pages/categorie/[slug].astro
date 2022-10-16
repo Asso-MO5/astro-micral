@@ -28,6 +28,7 @@ const { slug } = Astro.params,
           <Card
             href={`/article/${post.node.slug}`}
             noCat={true}
+            featuredImage={post.node?.featuredImage}
             title={post.node.title}
             body={post.node.excerpt}
             categories={post.node.categories.nodes}

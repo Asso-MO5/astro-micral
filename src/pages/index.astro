@@ -3,9 +3,10 @@ import Layout from "../layouts/Layout.astro"
 import Card from "../components/Card.astro"
 import Highlight from "../components/Highlight.astro"
 import getLastPosts from "../lib/getLastPosts"
+import { WP_post } from "../../types/post.type"
 
 const 
-  allPosts = await getLastPosts(), 
+  allPosts:WP_post[] = await getLastPosts(), 
   stickyPosts = allPosts.filter((post) => post.node.isSticky),
   stickyPost = stickyPosts.at(0),
   posts = allPosts.filter((post) => post.node.id !== stickyPost.node.id)
@@ -19,6 +20,7 @@ const
       {
         posts.map((post) => (
           <Card
+            featuredImage={post.node?.featuredImage}
             href={`/article/${post.node.slug}`}
             title={post.node.title}
             body={post.node.excerpt}
@@ -35,16 +37,19 @@ const
     margin: 2rem 0;
   }
 
+  ul {
+    padding: 0
+  }
+
   main {
     margin: auto;
-    padding: 20px;
+    padding: 5px 15px;
     max-width: 60ch;
   }
 
   .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 </style>

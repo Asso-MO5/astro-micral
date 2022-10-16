@@ -1,15 +1,19 @@
 ---
+import { FeaturedImage } from "../../types/post.type"
 import CategorieChip from "./CategorieChip.astro"
+import Cover from "./Cover.astro"
 
 type Props = {
   title: string
   body: string
   href: string
   noCat?: boolean
+  featuredImage: FeaturedImage
   categories: { name: string; slug: string }[]
 }
 
-const { href, title, noCat, body, categories } = Astro.props as Props
+const { href, title, noCat, body, categories, featuredImage } =
+  Astro.props as Props
 ---
 
 <article class="card">
@@ -27,7 +31,11 @@ const { href, title, noCat, body, categories } = Astro.props as Props
     <h2>{title}</h2>
   </a>
   <a href={href}>
-    <Fragment set:html={body} />
+    <div class="main">
+      <Cover featuredImage={featuredImage} />
+      <Fragment set:html={body} />
+    </div>
+
     <div class="arrow">
       <span>&rarr;</span>
     </div>
@@ -38,8 +46,11 @@ const { href, title, noCat, body, categories } = Astro.props as Props
   .card {
     list-style: none;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     cursor: pointer;
-    border: 1px solid rgba(0,0,0,.1)
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .card > a,
@@ -47,9 +58,9 @@ const { href, title, noCat, body, categories } = Astro.props as Props
     width: 100%;
     text-decoration: none;
     line-height: 1.4;
-    padding: 1em 1.3em;
     border-radius: 0.35rem;
     color: var(--text-color);
+    word-break: normal;
   }
 
   a > h2 {
@@ -66,9 +77,9 @@ const { href, title, noCat, body, categories } = Astro.props as Props
     transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  p {
-    margin-top: 0.75rem;
-    margin-bottom: 0;
+  .main ~ p {
+    margin: 0;
+    padding: 0;
   }
 
   .arrow {
@@ -85,5 +96,19 @@ const { href, title, noCat, body, categories } = Astro.props as Props
   .card:is(:hover, :focus-within) span {
     will-change: transform;
     transform: translateX(5px);
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media screen and (min-width: 600px) {
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      align-items: center;
+    }
   }
 </style>

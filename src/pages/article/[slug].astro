@@ -3,6 +3,7 @@ import CategorieChip from "../../components/CategorieChip.astro"
 import Layout from "../../layouts/Layout.astro"
 import getAllPostsWithSlugs from "../../lib/getAllPostsWithSlugs"
 import getPostBySlug from "../../lib/getPostBySlug"
+import Comment from "../../components/comment.svelte"
 
 export async function getStaticPaths() {
   const pagesWithSlugs = await getAllPostsWithSlugs()
@@ -15,18 +16,17 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params
 const post = await getPostBySlug(slug)
-
 ---
 
 <Layout title={post.title}>
   <main>
-
     <article>
       <div class="categories">
         {post?.categories?.nodes.map((cat) => <CategorieChip {...cat} />)}
       </div>
       <Fragment set:html={post.content} />
     </article>
+    <Comment client:visible />
   </main>
 </Layout>
 

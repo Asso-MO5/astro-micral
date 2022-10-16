@@ -1,0 +1,28 @@
+---
+import { FeaturedImage } from '../../types/post.type';
+
+type Props = {
+    featuredImage: FeaturedImage
+}
+
+const { featuredImage } = Astro.props as Props
+
+
+const src = featuredImage?.node?.mediaItemUrl || '/micral.webp'
+---
+
+<div class="container">
+    <img src={src} alt="image de l'article">
+</div>
+
+<style>
+    .container {
+        overflow: hidden;
+    }
+
+    .container img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+

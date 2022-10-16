@@ -1,5 +1,6 @@
 export type WP_post = {
   node: {
+    id:string
     featuredImage: FeaturedImage
     isSticky: true
     slug: string
