@@ -4,7 +4,7 @@ export default async function getPostBySlug(slug: string |number) {
   const data = await fetchAPI(`
     {
         postBy(slug: "${slug}") {
-        title(format: RAW)
+        title
         content(format: RENDERED)
         categories {
           nodes {
@@ -12,8 +12,15 @@ export default async function getPostBySlug(slug: string |number) {
             slug
           }
         }
+        featuredImage {
+          node {
+            mediaItemUrl
+          }
+        }
       }
     }
     `)
+
+    console.log(data?.postBy)
   return data?.postBy
 }

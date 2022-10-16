@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro"
 import getAllPostsWithSlugs from "../../lib/getAllPostsWithSlugs"
 import getPostBySlug from "../../lib/getPostBySlug"
 import Comment from "../../components/comment.svelte"
+import Cover from "../../components/Cover.astro"
 
 export async function getStaticPaths() {
   const pagesWithSlugs = await getAllPostsWithSlugs()
@@ -24,6 +25,8 @@ const post = await getPostBySlug(slug)
       <div class="categories">
         {post?.categories?.nodes.map((cat) => <CategorieChip {...cat} />)}
       </div>
+      <h1>{post.title}</h1>
+      <Cover featuredImage={post.featuredImage} />
       <Fragment set:html={post.content} />
     </article>
     <Comment client:visible />

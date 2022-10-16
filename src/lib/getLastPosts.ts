@@ -7,7 +7,7 @@ export default async function getLastPosts() {
         node {
           featuredImage {
             node {
-              link
+              mediaItemUrl
             }
           }
           isSticky
@@ -15,6 +15,7 @@ export default async function getLastPosts() {
           slug
           title
           excerpt
+
           categories {
             nodes {
               name
