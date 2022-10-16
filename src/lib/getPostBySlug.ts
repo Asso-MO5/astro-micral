@@ -5,6 +5,8 @@ export default async function getPostBySlug(slug: string |number) {
     {
         postBy(slug: "${slug}") {
         title
+        id
+        databaseId
         content(format: RENDERED)
         categories {
           nodes {
@@ -20,7 +22,5 @@ export default async function getPostBySlug(slug: string |number) {
       }
     }
     `)
-
-    console.log(data?.postBy)
   return data?.postBy
 }

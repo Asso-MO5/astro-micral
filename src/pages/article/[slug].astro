@@ -5,6 +5,7 @@ import getAllPostsWithSlugs from "../../lib/getAllPostsWithSlugs"
 import getPostBySlug from "../../lib/getPostBySlug"
 import Comment from "../../components/comment.svelte"
 import Cover from "../../components/Cover.astro"
+import NavLinkForPosts from "../../components/NavLinkForPosts.astro"
 
 export async function getStaticPaths() {
   const pagesWithSlugs = await getAllPostsWithSlugs()
@@ -29,7 +30,8 @@ const post = await getPostBySlug(slug)
       <Cover featuredImage={post.featuredImage} />
       <Fragment set:html={post.content} />
     </article>
-    <Comment client:visible />
+    <NavLinkForPosts databaseId={post.databaseId} />
+    <Comment client:only />
   </main>
 </Layout>
 

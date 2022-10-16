@@ -1,0 +1,49 @@
+---
+import getAfterAndBeforeArticles from "../lib/getAfterAndBeforeArticles"
+
+type Props = {
+  databaseId: number
+}
+
+const { databaseId } = Astro.props as Props
+
+const links = await getAfterAndBeforeArticles(databaseId),
+  previous = links.find((link) => link.position === "previous"),
+  next = links.find((link) => link.position === "next")
+---
+
+<nav class="container">
+  <div class="previous">
+    {
+      previous && (
+        <a href={previous.href} rel="prefetch">
+          <button>
+            {"< "}
+            {previous.title}
+          </button>
+        </a>
+      )
+    }
+  </div>
+  <div class="next">
+    {
+      next && (
+        <a href={next.href} rel="prefetch">
+          <button>
+            {next.title} {" >"}
+          </button>
+        </a>
+      )
+    }
+  </div>
+</nav>
+<style>
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 80ch;
+    gap: 10px;
+    justify-content: space-between;
+  }
+</style>

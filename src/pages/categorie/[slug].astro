@@ -22,7 +22,7 @@ const { slug } = Astro.params,
 <Layout title={categorie.name}>
   <main>
     <h2>{categorie.name}</h2>
-    <ul role="list" class="link-card-grid">
+    <div role="list" class="link-card-grid">
       {
         posts.map((post) => (
           <Card
@@ -35,7 +35,7 @@ const { slug } = Astro.params,
           />
         ))
       }
-    </ul>
+    </div>
   </main>
 </Layout>
 
@@ -56,6 +56,7 @@ const { slug } = Astro.params,
   }
 
   .link-card-grid {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     gap: 15px;
