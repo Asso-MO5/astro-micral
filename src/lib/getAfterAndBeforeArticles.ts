@@ -22,7 +22,7 @@ export default async function getAfterAndBeforeArticles(
 
   const before = await fetchAPI(`
     {
-      posts(before: "${cursor}", first: 1) {
+      posts(before: "${cursor}", last: 1) {
         edges {
           node {
             slug
