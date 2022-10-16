@@ -8,7 +8,7 @@ export default async function getAllPostsByCategory(id:string) {
           node {
             featuredImage {
               node {
-                link
+                mediaItemUrl
               }
             }
             isSticky
