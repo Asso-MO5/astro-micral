@@ -56,9 +56,8 @@ const { slug } = Astro.params,
   }
 
   .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 </style>
