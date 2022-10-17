@@ -20,7 +20,7 @@ export default async function getAfterAndBeforeArticles(
   const { cursor } = cursors?.posts?.edges.at(0)
   if (!cursor) return []
 
-  const before = await fetchAPI(`
+  const after = await fetchAPI(`
     {
       posts(before: "${cursor}", last: 1) {
         edges {
@@ -33,7 +33,7 @@ export default async function getAfterAndBeforeArticles(
     }
     `)
 
-  const after = await fetchAPI(`
+  const before = await fetchAPI(`
     {
       posts(after: "${cursor}", first: 1) {
         edges {
