@@ -1,0 +1,116 @@
+@font-face {
+  font-family: 'BebasNeue';
+  src: url('/fonts/BebasNeue-Regular.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoBold';
+  src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoItalic';
+  src: url('/fonts/Roboto-Italic.ttf') format('truetype');
+}
+
+:root {
+
+  --max-width: 900px;
+
+  --color-princ: #4088cf;
+  --color-second:#d9534f;
+  --color-bg: rgb(252, 252, 249);
+  --color-text: rgb(20, 20, 20);
+  --color-text-alt: rgb(238, 238, 238);
+  --color-bg-dark: rgb(205, 205, 205);
+  --color-shadow: rgba(0,0,0,.2);
+  --color-facebook:#3b5998;
+  --color-twitter: #00acee;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-color: var(--color-princ) var(--color-bg-dark);
+  scrollbar-width: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-princ) ;
+  transition: 200ms ease-in-out;
+  border-radius: 10px;
+}
+
+body {
+  background: var(--color-bg);
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  color: var(--color-text)
+}
+
+button {
+  outline: none;
+  border:none;
+  background: var(--color-second);
+  color: var(--color-text-alt);
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+h1,h2,h3,h4,h5 {
+  font-family: 'BebasNeue', sans-serif;
+  text-transform: uppercase;
+  margin:0
+}
+
+.bold {
+  font-weight: bold;
+}
+
+iframe, video {
+  max-width: 100%;
+}
+
+video  {
+  height: auto;
+}
+
+a {
+  word-break: break-all;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+
+@media screen and (max-width: 700px) {
+  img {
+    width: 100%;
+    height: auto;
+  }
+  
+}

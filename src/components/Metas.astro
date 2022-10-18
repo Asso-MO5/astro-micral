@@ -1,0 +1,44 @@
+---
+import { MetasProps } from "../../types/metasProps";
+
+const { title, img, path, description } = Astro.props as MetasProps
+
+const defaultDescription = "Blog consacré au Micral, le premier micro ordinateur au monde.",
+  baseUrl = "https://mo5.com",
+  baseTitle = "Micral",
+  defaultImg = `${baseUrl}micral.jpg`
+---
+
+<head>
+  <title>
+    {title && `${title} | `}
+    {baseTitle}
+  </title>
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/styles/globals.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+  <meta
+    property="og:title"
+    content={title ? `${title} | ` + baseTitle : baseTitle}
+  />
+  <meta property="og:image" content={img || defaultImg} />
+  <meta property="og:url" content={`${baseUrl}${path}`} />
+  <meta property="og:image:type" content="image/webp" />
+  <meta property="og:image:alt" content={title} />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content={description || defaultDescription} />
+  <meta name="twitter:card" content="photo" />
+  <meta name="twitter:site" content={baseUrl} />
+  <meta
+    name="twitter:title"
+    content={title ? `${title} | ` + baseTitle : baseTitle}
+  />
+  <meta
+    name="twitter:description"
+    content={description || defaultDescription}
+  />
+  <meta name="twitter:image" content={img || defaultImg} />
+  <meta name="twitter:url" content={`${baseUrl}${path}`} />
+</head>
