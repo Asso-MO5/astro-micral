@@ -23,6 +23,6 @@
   .container {
     border-top: var(--border);
     width: 100%;
-    max-width: 60ch;
+    max-width: 600px;
   }
 </style>
