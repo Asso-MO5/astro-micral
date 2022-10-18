@@ -17,25 +17,24 @@ const { href, title, noCat, body, categories, featuredImage } =
 ---
 
 <article class="card">
-  {
-    !noCat && (
-      <div class="categories">
-        {categories.map((cat) => (
-          <CategorieChip {...cat} />
-        ))}
-      </div>
-    )
-  }
+  <div class="main">
+    <a href={href}><Cover featuredImage={featuredImage} /></a>
+    <div class="text">
+      {
+        !noCat && (
+          <div class="categories">
+            {categories.map((cat) => (
+              <CategorieChip {...cat} />
+            ))}
+          </div>
+        )
+      }
+      <a href={href}><h2>{title}</h2></a>
 
-  <a href={href}>
-    <h2>{title}</h2>
-  </a>
-  <a href={href}>
-    <div class="main">
-      <Cover featuredImage={featuredImage} />
-      <Fragment set:html={body} />
+      <a href={href}><Fragment set:html={body} /></a>
     </div>
-
+  </div>
+  <a href={href}>
     <div class="arrow">
       <span>&rarr;</span>
     </div>
@@ -51,6 +50,8 @@ const { href, title, noCat, body, categories, featuredImage } =
     gap: 10px;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
   }
 
   .card > a,
@@ -77,6 +78,12 @@ const { href, title, noCat, body, categories, featuredImage } =
     margin: 0;
     transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     font-size: 1.3rem;
+  }
+
+  .text {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
   }
 
   .main ~ p {
