@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { onMount } from "svelte"
-  import MenuDesktop from "./MenuDesktop.svelte"
+  import { onMount } from 'svelte'
+  import MenuDesktop from './MenuDesktop.svelte'
 
-  export let links:any
+  export let links: any
   let isMobile: boolean
   function handleResize() {
     console.log('drer')
@@ -11,12 +11,12 @@
 
   onMount(() => {
     handleResize()
-    window.addEventListener("resize", handleResize)
+    window.addEventListener('resize', handleResize)
   })
 </script>
 
 {#if isMobile}
   <p>menu mobile in progress</p>
 {:else}
-  <MenuDesktop links={links}/>
+  <MenuDesktop {links} />
 {/if}
