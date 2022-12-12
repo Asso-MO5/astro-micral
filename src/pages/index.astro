@@ -1,18 +1,17 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import Card from "../components/Card.astro"
-import Highlight from "../components/Highlight.astro"
-import getLastPosts from "../lib/getLastPosts"
-import { WP_post } from "../../types/post.type"
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
+import Highlight from '../components/Highlight.astro'
+import getLastPosts from '../lib/getLastPosts'
+import { WP_post } from '../../types/post.type'
 
-const 
-  allPosts:WP_post[] = await getLastPosts(), 
+const allPosts: WP_post[] = await getLastPosts(),
   stickyPosts = allPosts.filter((post) => post.node.isSticky),
   stickyPost = stickyPosts.at(0),
   posts = allPosts.filter((post) => post.node.id !== stickyPost.node.id)
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout>
   <main>
     <Highlight post={stickyPost} />
 
@@ -38,7 +37,7 @@ const
   }
 
   ul {
-    padding: 0
+    padding: 0;
   }
 
   main {

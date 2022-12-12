@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { BASE_URL } from '../../utils/constants'
+
   export let links
 </script>
 
@@ -7,12 +9,12 @@
   <ul class="menu">
     {#each links as link}
       <li>
-        <a href={link.node.uri} rel="prefetch">
+        <a href={BASE_URL + link.node.uri} rel="prefetch">
           {link.node.label}
         </a>
       </li>
     {/each}
-    </ul>
+  </ul>
 </div>
 
 <style>
@@ -44,6 +46,5 @@
 
   li {
     padding: 0;
-
   }
 </style>

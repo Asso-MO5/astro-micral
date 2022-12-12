@@ -1,9 +1,10 @@
 ---
-import Card from "../../components/Card.astro"
-import Layout from "../../layouts/Layout.astro"
-import getAllCategoriesWithSlugs from "../../lib/getAllCategoriesWithSlugs"
-import getAllPostsByCategory from "../../lib/getAllPostsByCategory"
-import getCategoryBySlug from "../../lib/getCategoryBySlug"
+import Card from '../../components/Card.astro'
+import Layout from '../../layouts/Layout.astro'
+import getAllCategoriesWithSlugs from '../../lib/getAllCategoriesWithSlugs'
+import getAllPostsByCategory from '../../lib/getAllPostsByCategory'
+import getCategoryBySlug from '../../lib/getCategoryBySlug'
+import { BASE_URL } from '../../utils/constants'
 
 export async function getStaticPaths() {
   const categoriesWithSlugs = await getAllCategoriesWithSlugs()
@@ -19,14 +20,14 @@ const { slug } = Astro.params,
   posts = await getAllPostsByCategory(categorie.id)
 ---
 
-<Layout title={categorie.name}>
+<Layout>
   <main>
     <h2>{categorie.name}</h2>
     <div role="list" class="link-card-grid">
       {
         posts.map((post) => (
           <Card
-            href={`/article/${post.node.slug}`}
+            href={`${BASE_URL}/article/${post.node.slug}`}
             noCat={true}
             featuredImage={post.node?.featuredImage}
             title={post.node.title}

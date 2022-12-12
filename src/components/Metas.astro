@@ -1,11 +1,13 @@
 ---
-import { MetasProps } from "../../types/metasProps";
+import { MetasProps } from '../../types/metasProps'
+import { BASE_URL } from '../utils/constants'
 
 const { title, img, path, description } = Astro.props as MetasProps
 
-const defaultDescription = "Blog consacré au Micral, le premier micro ordinateur au monde.",
-  baseUrl = "https://mo5.com",
-  baseTitle = "Micral",
+const defaultDescription =
+    'Blog consacré au Micral, le premier micro ordinateur au monde.',
+  baseUrl = 'https://mo5.com',
+  baseTitle = 'Micral',
   defaultImg = `${baseUrl}micral.jpg`
 ---
 
@@ -14,8 +16,8 @@ const defaultDescription = "Blog consacré au Micral, le premier micro ordinateu
     {title && `${title} | `}
     {baseTitle}
   </title>
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="/styles/globals.css" />
+  <link rel="icon" href={BASE_URL + '/favicon.ico'} />
+  <link rel="stylesheet" href={BASE_URL + '/styles/globals.css'} />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />

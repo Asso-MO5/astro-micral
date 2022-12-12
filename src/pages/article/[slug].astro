@@ -1,11 +1,11 @@
 ---
-import CategorieChip from "../../components/CategorieChip.astro"
-import Layout from "../../layouts/Layout.astro"
-import getAllPostsWithSlugs from "../../lib/getAllPostsWithSlugs"
-import getPostBySlug from "../../lib/getPostBySlug"
-import Comment from "../../components/comment.svelte"
-import Cover from "../../components/Cover.astro"
-import NavLinkForPosts from "../../components/NavLinkForPosts.astro"
+import CategorieChip from '../../components/CategorieChip.astro'
+import Layout from '../../layouts/Layout.astro'
+import getAllPostsWithSlugs from '../../lib/getAllPostsWithSlugs'
+import getPostBySlug from '../../lib/getPostBySlug'
+import Comment from '../../components/comment.svelte'
+import Cover from '../../components/Cover.astro'
+import NavLinkForPosts from '../../components/NavLinkForPosts.astro'
 
 export async function getStaticPaths() {
   const pagesWithSlugs = await getAllPostsWithSlugs()
@@ -20,7 +20,7 @@ const { slug } = Astro.params
 const post = await getPostBySlug(slug)
 ---
 
-<Layout title={post.title}>
+<Layout>
   <main>
     <article>
       <div class="categories">

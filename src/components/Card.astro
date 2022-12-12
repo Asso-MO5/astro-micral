@@ -1,7 +1,8 @@
 ---
-import { FeaturedImage } from "../../types/post.type"
-import CategorieChip from "./CategorieChip.astro"
-import Cover from "./Cover.astro"
+import { FeaturedImage } from '../../types/post.type'
+import { BASE_URL } from '../utils/constants'
+import CategorieChip from './CategorieChip.astro'
+import Cover from './Cover.astro'
 
 type Props = {
   title: string
@@ -18,7 +19,7 @@ const { href, title, noCat, body, categories, featuredImage } =
 
 <article class="card">
   <div class="main">
-    <a href={href}><Cover featuredImage={featuredImage} /></a>
+    <a href={BASE_URL + href}><Cover featuredImage={featuredImage} /></a>
     <div class="text">
       {
         !noCat && (
@@ -29,12 +30,12 @@ const { href, title, noCat, body, categories, featuredImage } =
           </div>
         )
       }
-      <a href={href}><h2>{title}</h2></a>
+      <a href={BASE_URL + href}><h2>{title}</h2></a>
 
-      <a href={href}><Fragment set:html={body} /></a>
+      <a href={BASE_URL + href}><Fragment set:html={body} /></a>
     </div>
   </div>
-  <a href={href}>
+  <a href={BASE_URL + href}>
     <div class="arrow">
       <span>&rarr;</span>
     </div>
