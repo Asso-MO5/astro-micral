@@ -1,2 +1,1 @@
-export const BASE_URL =
-  process.env.NODE_ENV === 'development' ? '/' : '/astro-micral'
+export const BASE_URL = '/astro-micral'
