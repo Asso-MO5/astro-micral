@@ -25,6 +25,7 @@ concurrency:
 
 env:
   WP: https://mo5.com/micral/graphql
+  BASE_URL: https://mo5.com/micral
   BUILD_PATH: "." # default value when not using subfolders
   # BUILD_PATH: subfolder
 
