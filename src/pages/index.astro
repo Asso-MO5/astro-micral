@@ -7,13 +7,13 @@ import { WP_post } from '../../types/post.type'
 
 const allPosts: WP_post[] = await getLastPosts(),
   stickyPosts = allPosts.filter((post) => post.node.isSticky),
-  stickyPost = stickyPosts.at(0),
-  posts = allPosts.filter((post) => post.node.id !== stickyPost.node.id)
+  stickyPost = stickyPosts.length ? stickyPosts.at(0) : null,
+  posts = allPosts.filter((post) => post.node.id !== stickyPost?.node.id)
 ---
 
 <Layout>
   <main>
-    <Highlight post={stickyPost} />
+    {stickyPost && <Highlight post={stickyPost} />}
 
     <ul role="list" class="link-card-grid">
       {
