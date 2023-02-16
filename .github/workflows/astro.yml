@@ -24,13 +24,14 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  WP:  ${{ vars.WP }}
+  WP: ${{ vars.WP }}
   BUILD_PATH: "." # default value when not using subfolders
   # BUILD_PATH: subfolder
 
 jobs:
   build:
     name: Build
+    environment: github-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
