@@ -52,11 +52,19 @@ const post = await getPostBySlug(slug)
     gap: 10px;
     flex-wrap: wrap;
   }
+
+  :global(div[style])  {
+    width: auto !important;
+  }
   article {
     max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+
+  img {
+    max-width: 100%;
   }
 </style>

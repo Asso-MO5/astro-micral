@@ -11,11 +11,11 @@ interface Props {
 
 const { metas } = Astro.props as Props
 
-const { menuItems } = await getPrimaryMenu()
-const links = menuItems.edges.map((item) => {
-  item.node.uri = item.node.uri.replace('category', 'categorie')
+//const { menuItems } = await getPrimaryMenu()
+/** const links = menuItems.edges.map((item) => {
+  item.node.uri = item.uri.replace('category', 'categorie')
   return item
-})
+})  **/
 ---
 
 <!DOCTYPE html>
@@ -23,7 +23,6 @@ const links = menuItems.edges.map((item) => {
   <Metas {...metas} />
   <body>
     <Header />
-    <Menu links={links} client:idle />
     <slot />
   </body>
 </html>

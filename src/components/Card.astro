@@ -3,6 +3,8 @@ import { FeaturedImage } from '../../types/post.type'
 import { BASE_URL } from '../utils/constants'
 import CategorieChip from './CategorieChip.astro'
 import Cover from './Cover.astro'
+import { JSDOM }  from 'jsdom'
+
 
 type Props = {
   title: string
@@ -15,6 +17,12 @@ type Props = {
 
 const { href, title, noCat, body, categories, featuredImage } =
   Astro.props as Props
+
+  const dom = new JSDOM(``);
+  const el = dom.window.document.createElement('div')
+  el.innerHTML = body
+  const bodyText = el.textContent.split(' ')
+  const excerpt = bodyText.length > 50 ? bodyText.slice(0, 50).join(' ') + ' [...]' : bodyText.join(' ')
 ---
 
 <article class="card">
@@ -32,7 +40,7 @@ const { href, title, noCat, body, categories, featuredImage } =
       }
       <a href={BASE_URL + href}><h2>{title}</h2></a>
 
-      <a href={BASE_URL + href}><Fragment set:html={body} /></a>
+      <a href={BASE_URL + href}>{excerpt}</a>
     </div>
   </div>
   <a href={BASE_URL + href}>

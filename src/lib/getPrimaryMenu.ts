@@ -1,30 +1,31 @@
-import fetchAPI from "./fetchAPI"
+import fetchAPI from './fetchAPI'
 
 export default async function getPrimaryMenu() {
   const data = await fetchAPI(`
     {
-      menus(where: {location: PRIMARY}) {
-        nodes {
-            menuItems {
-            edges {
+      menu(id: "dGVybToxNTA0") {
+       
+        menuItems {
+        edges {
+            node {
+            path
+            label
+            uri
+            connectedNode {
                 node {
-                path
-                label
-                uri
-                connectedNode {
-                    node {
-                    ... on Page {
-                        isPostsPage
-                        slug
-                    }
-                    }
+                ... on Page {
+                    isPostsPage
+                    slug
                 }
                 }
             }
             }
         }
+        }
+        
         }
     }
     `)
-  return data?.menus?.nodes.at(0)
+  console.log(data)
+  return data?.menu?.at(0)
 }

@@ -1,9 +1,9 @@
-import fetchAPI from "./fetchAPI"
+import fetchAPI from './fetchAPI'
 
 export default async function getAfterAndBeforeArticles(
   databaseId: number
 ): Promise<
-  Array<{ href: string; title: string; position: "next" | "previous" }>
+  Array<{ href: string; title: string; position: 'next' | 'previous' }>
 > {
   const cursors = await fetchAPI(`
     {
@@ -50,17 +50,17 @@ export default async function getAfterAndBeforeArticles(
 
   if (before?.posts && before?.posts.edges.length > 0) {
     links.push({
-      href: "/article/" + before?.posts.edges.at(0).node.slug,
+      href: '/article/' + before?.posts.edges.at(0).node.slug,
       title: before?.posts.edges.at(0).node.title,
-      position: "previous",
+      position: 'previous',
     })
   }
 
   if (after?.posts && after?.posts.edges.length > 0) {
     links.push({
-      href: "/article/" + after?.posts.edges.at(0).node.slug,
+      href: '/article/' + after?.posts.edges.at(0).node.slug,
       title: after?.posts.edges.at(0).node.title,
-      position: "next",
+      position: 'next',
     })
   }
 

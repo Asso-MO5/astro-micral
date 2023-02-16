@@ -1,8 +1,8 @@
-import fetchAPI from "./fetchAPI"
+import fetchAPI from './fetchAPI'
 
 export default async function getLastPosts() {
   const data = await fetchAPI(`{
-    posts {
+    posts(where:{categoryId: 1485}) {
       edges {
         node {
           featuredImage {

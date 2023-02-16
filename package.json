@@ -13,5 +13,8 @@
     "@types/node": "^18.7.23",
     "astro": "^1.0.0-rc.8",
     "dotenv": "^16.0.2"
+  },
+  "dependencies": {
+    "jsdom": "^21.1.0"
   }
 }
